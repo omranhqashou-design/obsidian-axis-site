@@ -1,10 +1,8 @@
-import fetch from "node-fetch";
-
 export async function handler(event, context) {
-  const body = JSON.parse(event.body || "{}");
-  const userMessage = body.message || "";
-
   try {
+    const body = JSON.parse(event.body || "{}");
+    const userMessage = body.message || "";
+
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -23,10 +21,11 @@ export async function handler(event, context) {
       statusCode: 200,
       body: JSON.stringify({ reply: data.choices[0].message.content }),
     };
-  } catch (error) {
+
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ reply: "Error: " + error.message }),
+      body: JSON.stringify({ reply: "Server error: " + err.message }),
     };
   }
 }
