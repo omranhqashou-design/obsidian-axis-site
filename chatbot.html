@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Obsidian Axis AI Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chatbot.css" />
+</head>
+<body>
+  <!-- background glows -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="page-shell">
+    <!-- top bar -->
+    <header class="top-bar">
+      <div class="top-left">
+        <div class="dot-logo"></div>
+        <span class="brand">OBSIDIAN AXIS</span>
+      </div>
+      <a href="../index.html" class="back-link">← Back to main site</a>
+    </header>
+
+    <!-- main layout -->
+    <main class="chat-layout">
+      <!-- glass chat card -->
+      <section class="chat-card">
+        <header class="chat-header">
+          <div class="chat-title-row">
+            <div class="chat-avatar">
+  <img src="../obsidian-axis-logo.png" alt="Obsidian Axis Logo">
+</div>
+
+            <div>
+              <div class="chat-title">Obsidian Axis AI Assistant</div>
+              <div class="chat-subtitle">Ask about modernization, workflows &amp; AI.</div>
+            </div>
+          </div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            Live
+          </div>
+        </header>
+
+        <div id="chat-log" class="chat-log">
+          <div class="msg msg-bot">
+            <p>
+              Hey, I’m the Obsidian Axis assistant.  
+              Tell me about a system or workflow you’d like to modernize.
+            </p>
+          </div>
+        </div>
+
+        <form id="chat-form" class="chat-input-row">
+          <input
+            id="user-input"
+            type="text"
+            autocomplete="off"
+            placeholder="Ask about legacy systems, AI workflows, or a specific process…"
+          />
+          <button type="submit" id="send-btn">Send</button>
+        </form>
+
+        <div class="hint-row">
+          <span class="hint-label">Try:</span>
+          <button type="button" class="hint-pill" data-hint="Help me modernize an internal tool that my sales team uses.">
+            Modernize internal tool
+          </button>
+          <button type="button" class="hint-pill" data-hint="Design an AI workflow that summarizes daily operations for leadership.">
+            AI daily summary workflow
+          </button>
+          <button type="button" class="hint-pill" data-hint="Replace a whiteboard with a live digital board like your Smart Inventory project.">
+            Smart inventory board
+          </button>
+        </div>
+      </section>
+
+      <!-- right side info panel -->
+      <aside class="info-panel">
+        <h2>What this assistant is good at</h2>
+        <p>
+          This copilot is tuned for <strong>real operations</strong> — not vague AI ideas.
+          Use it to explore how Obsidian Axis can plug into your existing tools.
+        </p>
+
+        <ul class="info-list">
+          <li>Mapping messy, legacy workflows into clear, modern flows.</li>
+          <li>Finding high-leverage places to add AI (without rebuilding everything).</li>
+          <li>Turning whiteboards, spreadsheets, and tribal knowledge into systems.</li>
+          <li>Brainstorming phased rollouts that don’t break your current operations.</li>
+        </ul>
+
+        <div class="pill-group">
+          <span class="info-pill">Legacy UI → Modern board</span>
+          <span class="info-pill">CRM copilots</span>
+          <span class="info-pill">Ops &amp; logistics workflows</span>
+          <span class="info-pill">AI summaries &amp; alerts</span>
+        </div>
+
+        <div class="tiny-note">
+          When you’re ready, we can wire this assistant into your
+          <span>real data &amp; internal systems</span> instead of a demo environment.
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="chatbot.js" defer></script>
+</body>
+</html>
