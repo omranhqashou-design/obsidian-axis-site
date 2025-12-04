@@ -1966,11 +1966,9 @@
 
     if (chatToggle && chatWidget) {
       chatToggle.addEventListener('click', () => {
-        chatWidget.classList.toggle('open');
-        if (chatWidget.classList.contains('open')) {
-          setTimeout(() => chatInput && chatInput.focus(), 150);
-        }
-      });
+  window.location.href = "/chatbot/chatbot.html";
+});
+
     }
 
     function addChatMessage(text, sender = 'bot') {
