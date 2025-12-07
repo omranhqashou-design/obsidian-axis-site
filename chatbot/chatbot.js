@@ -1,37 +1,57 @@
-const chatInput = document.getElementById("chat-input");
-const chatSend = document.getElementById("chat-send");
-const chatWindow = document.getElementById("chat-window");
+const chatLog = document.getElementById("chat-log");
+const chatForm = document.getElementById("chat-form");
+const userInput = document.getElementById("user-input");
 
-async function sendMessage() {
-  const text = chatInput.value.trim();
+// Append messages to chat window
+function addMessage(text, sender = "bot") {
+  const msg = document.createElement("div");
+  msg.className = sender === "user" ? "msg msg-user" : "msg msg-bot";
+  msg.textContent = text;
+  chatLog.appendChild(msg);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+// Handle sending message
+chatForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const text = userInput.value.trim();
   if (!text) return;
 
-  appendMessage("user", text);
-  chatInput.value = "";
+  // add user message
+  addMessage(text, "user");
 
-  appendMessage("bot", "Thinking...");
+  userInput.value = "";
+  userInput.disabled = true;
 
-  const res = await fetch("/.netlify/functions/chatbot", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: text })
+  // send to backend
+  try {
+    const res = await fetch("/.netlify/functions/chatbot", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text })
+    });
+
+    const data = await res.json();
+
+    if (data.reply) {
+      addMessage(data.reply, "bot");
+    } else {
+      addMessage("⚠️ No reply received from server.", "bot");
+    }
+
+  } catch (err) {
+    addMessage("❌ Error: " + err.message, "bot");
+  }
+
+  userInput.disabled = false;
+  userInput.focus();
+});
+
+// Hint button support
+document.querySelectorAll(".hint-pill").forEach((hint) => {
+  hint.addEventListener("click", () => {
+    userInput.value = hint.dataset.hint;
+    chatForm.dispatchEvent(new Event("submit"));
   });
-
-  const data = await res.json();
-
-  chatWindow.removeChild(chatWindow.lastChild);
-  appendMessage("bot", data.reply);
-}
-
-function appendMessage(author, text) {
-  const div = document.createElement("div");
-  div.className = `msg ${author}`;
-  div.textContent = text;
-  chatWindow.appendChild(div);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-}
-
-chatSend.addEventListener("click", sendMessage);
-chatInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
 });
