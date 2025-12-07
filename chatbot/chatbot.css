@@ -1,6 +1,274 @@
-/* ------------------------
-   TYPING INDICATOR DOTS
-------------------------- */
+/* --------------------------------------------
+   OBSIDIAN AXIS – PREMIUM AI CHAT UI STYLES
+   COMPLETE RESPONSIVE FILE
+--------------------------------------------- */
+
+:root {
+  --bg: #050509;
+  --card-bg: rgba(18, 18, 30, 0.72);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --accent: #a855ff;
+  --accent2: #6366f1;
+  --text: #f9fafb;
+  --muted: #9ca3af;
+  --shadow-card: 0 40px 80px rgba(0, 0, 0, 0.55);
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------
+   PAGE BACKGROUND
+--------------------------------------------- */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #151521 0, var(--bg) 50%, #020207 100%);
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* --------------------------------------------
+   BACKGROUND ORBS
+--------------------------------------------- */
+.orb {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 { width: 350px; height: 350px; background: #a855ff; top: -90px; left: -80px; }
+.orb-2 { width: 300px; height: 300px; background: #6366f1; top: 25%; right: -120px; }
+.orb-3 { width: 300px; height: 300px; background: #111827; bottom: -120px; left: 30%; }
+
+/* --------------------------------------------
+   CENTER WRAPPER
+--------------------------------------------- */
+.chat-wrapper {
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* --------------------------------------------
+   CHAT CARD (MAIN UI CONTAINER)
+--------------------------------------------- */
+.chat-card {
+  width: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(32px);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  padding: 1.4rem 1.4rem 1rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------
+   CHAT HEADER
+--------------------------------------------- */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.chat-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.chat-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.chat-avatar img {
+  width: 100%; height: 100%; object-fit: contain;
+}
+
+.chat-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.chat-subtitle {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* LIVE BADGE */
+.status-pill {
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(34,197,94,0.15);
+  color: #4ade80;
+  border: 1px solid rgba(74,222,128,0.4);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 999px;
+}
+
+/* --------------------------------------------
+   CHAT LOG / MESSAGE AREA
+--------------------------------------------- */
+.chat-log {
+  flex: 1;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.chat-log::-webkit-scrollbar { width: 6px; }
+.chat-log::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 999px;
+}
+
+/* --------------------------------------------
+   MESSAGE BUBBLES
+--------------------------------------------- */
+.msg {
+  max-width: 85%;
+  font-size: 0.9rem;
+  line-height: 1.52;
+  padding: 0.65rem 1rem;
+  border-radius: 16px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border-radius: 16px 16px 4px 16px;
+  box-shadow: 0 10px 25px rgba(168,85,255,0.30);
+}
+
+.msg-bot {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #e5e7eb;
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* Bubble during streaming */
+.msg[data-typing="true"] {
+  opacity: 0.85;
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* --------------------------------------------
+   INPUT AREA
+--------------------------------------------- */
+.chat-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+#user-input {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  outline: none;
+  transition: 0.2s;
+}
+
+#user-input:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.14);
+}
+
+#send-btn {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 12px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+#send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(168,85,255,0.35);
+}
+
+/* --------------------------------------------
+   HINT BUTTONS
+--------------------------------------------- */
+.hint-row {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.hint-pill {
+  background: rgba(255,255,255,0.06);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--muted);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.hint-pill:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+/* --------------------------------------------
+   TYPING INDICATOR (3 DOTS)
+--------------------------------------------- */
 .typing-indicator {
   display: inline-flex;
   gap: 4px;
@@ -24,10 +292,28 @@
   100% { opacity: 0.2; transform: translateY(0px); }
 }
 
-/* ------------------------
-   STREAMING MESSAGE ANIMATION
-------------------------- */
-.msg[data-typing="true"] {
-  border-color: rgba(255,255,255,0.22);
-  opacity: 0.9;
+/* --------------------------------------------
+   RESPONSIVE – MOBILE FIRST
+--------------------------------------------- */
+@media (max-width: 600px) {
+  .chat-card {
+    padding: 1.1rem;
+    border-radius: 18px;
+  }
+
+  .msg {
+    max-width: 92%;
+  }
+
+  .chat-log {
+    max-height: 70vh;
+  }
+
+  #send-btn {
+    padding: 0.55rem 1rem;
+  }
+
+  #user-input {
+    font-size: 0.85rem;
+  }
 }
