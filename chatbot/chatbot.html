@@ -8,77 +8,53 @@
 
 <body>
 
-  <!-- Background Glows -->
+  <!-- Background glows -->
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
 
-  <!-- Center Wrapper -->
+  <!-- MAIN CENTERED WRAPPER -->
   <div class="chat-wrapper">
-    <div class="page-shell">
 
-      <!-- Top Bar -->
-      <header class="top-bar">
-        <div class="top-left">
-          <div class="dot-logo"></div>
-          <span class="brand">OBSIDIAN AXIS</span>
+    <!-- CHAT CARD -->
+    <section class="chat-card">
+
+      <!-- HEADER -->
+      <header class="chat-header">
+        <div class="chat-title-row">
+          <div class="chat-avatar">
+            <img src="../obsidian-axis-logo.png" alt="logo" />
+          </div>
+          <div>
+            <div class="chat-title">Obsidian Axis AI Assistant</div>
+            <div class="chat-subtitle">Modernization • Workflows • Automation</div>
+          </div>
         </div>
-        <a class="back-link" href="../index.html">← Back</a>
+        <div class="status-pill"><span class="status-dot"></span>Live</div>
       </header>
 
-      <!-- GRID LAYOUT -->
-      <main class="chat-layout">
+      <!-- CHAT LOG -->
+      <div id="chat-log" class="chat-log">
+        <div class="msg msg-bot">
+          Hello — I’m the Obsidian Axis AI assistant. How can I help you today?
+        </div>
+      </div>
 
-        <!-- CHAT CARD -->
-        <section class="chat-card">
-          <header class="chat-header">
-            <div class="chat-title-row">
-              <div class="chat-avatar">
-                <img src="../obsidian-axis-logo.png" />
-              </div>
-              <div>
-                <div class="chat-title">Obsidian Axis AI Assistant</div>
-                <div class="chat-subtitle">Modernization • Workflows • Automation</div>
-              </div>
-            </div>
-            <div class="status-pill">
-              <span class="status-dot"></span>Live
-            </div>
-          </header>
+      <!-- INPUT ROW -->
+      <form id="chat-form" class="chat-input-row">
+        <input id="user-input" type="text" placeholder="Ask me anything…" autocomplete="off" />
+        <button id="send-btn" type="submit">Send</button>
+      </form>
 
-          <!-- CHAT WINDOW -->
-          <div id="chat-log" class="chat-log">
-            <div class="msg msg-bot">Hello — I’m the Obsidian Axis AI assistant. How can I help?</div>
-          </div>
+      <!-- HINTS -->
+      <div class="hint-row">
+        <button class="hint-pill" data-hint="Help me modernize a workflow.">Modernize a workflow</button>
+        <button class="hint-pill" data-hint="Explain an AI automation idea.">AI automation idea</button>
+        <button class="hint-pill" data-hint="Describe a Smart Inventory Board.">Smart Inventory Board</button>
+      </div>
 
-          <!-- INPUT AREA -->
-          <form id="chat-form" class="chat-input-row">
-            <input id="user-input" type="text" placeholder="Ask me anything..." />
-            <button id="send-btn" type="submit">Send</button>
-          </form>
+    </section>
 
-          <!-- HINTS -->
-          <div class="hint-row">
-            <button class="hint-pill" data-hint="Help me modernize a workflow.">Modernize a workflow</button>
-            <button class="hint-pill" data-hint="Explain an AI automation idea.">AI automation idea</button>
-            <button class="hint-pill" data-hint="Describe a Smart Inventory Board.">Smart Inventory Board</button>
-          </div>
-        </section>
-
-        <!-- INFO PANEL -->
-        <aside class="info-panel">
-          <h2>Capabilities</h2>
-          <p>This assistant helps with modernization strategy and workflow design.</p>
-          <ul class="info-list">
-            <li>Redesign legacy workflows</li>
-            <li>Identify automation opportunities</li>
-            <li>Plan AI integrations</li>
-            <li>Explain technical systems</li>
-          </ul>
-        </aside>
-
-      </main>
-    </div>
   </div>
 
   <script src="chatbot.js"></script>
